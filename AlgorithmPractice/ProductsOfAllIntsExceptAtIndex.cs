@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlgorithmPractice
 {
-    public static class ArrayIndexMultiplication
+    public static class ProductsOfAllIntsExceptAtIndex
     {
         public static void Run()
         {
@@ -52,36 +52,27 @@ namespace AlgorithmPractice
         {
             var output = new int[input.Length];
 
-            var productsOfElementsBeforeIndex = new int[input.Length];
-
-            var productsOfElementsAfterIndex = new int[input.Length];
-
-            //calculate product of elements before index
+            // calculate product of elements before index
             for (int i = 0; i < input.Length; i++)
             {
-                productsOfElementsBeforeIndex[i] = 1;
+                output[i] = 1;
 
                 if (i > 0)
                 {
-                    productsOfElementsBeforeIndex[i] = productsOfElementsBeforeIndex[i - 1] * input[i - 1];
+                    output[i] = output[i - 1] * input[i - 1];
                 }
             }
 
-            //calculate product of elements after index
+            // calculate product of elements before and after index
+            int productOfIndicesAfterCurrent = 1;
             for (int i = input.Length - 1; i >= 0; i--)
             {
-                productsOfElementsAfterIndex[i] = 1;
-
                 if (i < input.Length - 1)
                 {
-                    productsOfElementsAfterIndex[i] = productsOfElementsAfterIndex[i + 1] * input[i + 1];
+                    output[i] = output[i] * productOfIndicesAfterCurrent;
                 }
-            }
 
-            //calculate products array
-            for (int i = 0; i < input.Length; i++)
-            {
-                output[i] = productsOfElementsBeforeIndex[i] * productsOfElementsAfterIndex[i];
+                productOfIndicesAfterCurrent *= input[i];
             }
 
             return output;

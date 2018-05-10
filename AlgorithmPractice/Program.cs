@@ -8,7 +8,7 @@ namespace AlgorithmPractice
         {
             //FibonacciSequence.Run();
             //MaxProfit.Run();
-            ArrayIndexMultiplication.Run();
+            ProductsOfAllIntsExceptAtIndex.Run();
         }
     }
 }
